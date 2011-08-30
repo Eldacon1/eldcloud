@@ -1,76 +1,47 @@
 class User < ActiveRecord::Base
+   has_many :checked_out_documents, :class_name => :document
+   has_many :groups
+   has_one :active_account, :class_name => :account
    attr_accessor :name
    attr_accessor :email
    attr_accessor :password
    attr_accessor :telephone
    attr_accessor :instant_messenger
-   attr_accessor :checked_out_documents
    attr_accessor :accounts_left #(darab)
-   attr_accessor :active_account
-   attr_accessor :member_of_groups
-
-   def initialize
-      @checked_out_documents = Array.new
-      @member_of_groups = Array.new
-   end
 end
 
 class Account < ActiveRecord::Base
+   has_one :owner ,:class_name => :user
+   has_one :user
    attr_accessor :start_date
    attr_accessor :end_date
-   attr_accessor :owner
-   attr_accessor :user
 end
 
 class Group < ActiveRecord::Base
+   has_one :parent_group, :class_name => :group
+   has_many :children_groups, :class_name => :group
+   has_many :users
    attr_accessor :name
-   attr_accessor :parent_group
-   attr_accessor :users
-
-   def initialize
-      @users = Array.new
-   end
+   attr_accessor :is_a_one_man_group
 end
 
 class Document < ActiveRecord::Base
    has_one :security_profile
+   has_one :creator, :class_name => :user
+   has_one :checked_out_by, :class_name => :user
+   has_many :tags
    attr_accessor :name
    attr_accessor :location_uri
-   attr_accessor :checked_out_by_user
    attr_accessor :checkout_date
-
-   def initialize
-      #@labels = Array.new
-   end
-   #attr_accessor :labels
 end
 
 class SecurityProfile < ActiveRecord::Base
-   has_many users which can read???!!!
-   attr_accessor :can_read
-   attr_accessor :can_write
-   attr_accessor :can_list
-
-   def initialize
-      #pushable objects: User,Group
-      @can_read = Array.new
-      @can_write = Array.new
-      @can_list = Array.new
-   end
+   #minden usernek csinalunk egy egyszemelyes group-ot is
+   has_many :readers, :class_name => :group
+   has_many :writers, :class_name => :group
+   has_many :listers, :class_name => :group
 end
 
 class Tag < ActiveRecord::Base
+   attr_accessor :name
 end
-
-
-
-
-
-
-
-
-
-
-   attr_accessor :start_date
-   attr_accessor :end_date
-
