@@ -27,9 +27,12 @@ gem 'sqlite3-ruby', :require => 'sqlite3'
 # and rake tasks are available in development mode:
 group :development, :test do
    #gem 'webrat'
-   #gem 'railroady'
-end
 
-group :development do
-  gem "rails-erd"
+   #railroady breaks rails so it is recommended to:
+   # 1: uncomment
+   # 2: bundle install
+   # 3: comment
+   # this way it gets installed, but does not break rails
+   #
+   #gem 'railroady'
 end
