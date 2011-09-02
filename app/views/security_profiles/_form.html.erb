@@ -1,0 +1,17 @@
+<%= form_for(@security_profile) do |f| %>
+  <% if @security_profile.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@security_profile.errors.count, "error") %> prohibited this security_profile from being saved:</h2>
+
+      <ul>
+      <% @security_profile.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

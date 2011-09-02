@@ -1,4 +1,12 @@
 Eldcloud::Application.routes.draw do
+  resources :security_profiles
+
+  resources :events
+
+  resources :documents
+
+  resources :accounts
+
   resources :groups
 
   resources :users

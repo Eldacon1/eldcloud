@@ -1,0 +1,21 @@
+<h1>Listing security_profiles</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @security_profiles.each do |security_profile| %>
+  <tr>
+    <td><%= link_to 'Show', security_profile %></td>
+    <td><%= link_to 'Edit', edit_security_profile_path(security_profile) %></td>
+    <td><%= link_to 'Destroy', security_profile, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Security profile', new_security_profile_path %>
